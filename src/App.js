@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
+import Drawer from './components/Drawer';
+import Dashboard from './pages/Dashboard';
+import Users from './pages/Users';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/global.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container fluid>
+        <Row>
+          {/* Drawer: Responsivo (arriba en móviles, izquierda en pantallas grandes) */}
+          <Col xs={12} md={2} className="drawer-col">
+            <Drawer />
+          </Col>
+          {/* Contenido principal */}
+          <Col xs={12} md={10}>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/users" element={<Users />} />
+            </Routes>
+          </Col>
+        </Row>
+      </Container>
+    </Router>
   );
 }
 

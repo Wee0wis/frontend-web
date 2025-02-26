@@ -1,0 +1,35 @@
+/* Estilos para el Drawer */
+.drawer {
+    background-color: #2c3e50; /* Color de fondo del Drawer */
+    color: white; /* Color del texto */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  }
+  
+  /* Estilos para pantallas grandes (md y superiores) */
+  @media (min-width: 768px) {
+    .drawer {
+      height: 100vh; /* Altura completa de la pantalla */
+      width: 250px; /* Ancho del Drawer */
+    }
+  }
+  
+  /* Estilos para pantallas pequeñas (sm y menores) */
+  @media (max-width: 767.98px) {
+    .drawer {
+      width: 100%; /* Ocupa todo el ancho */
+      height: auto; /* Altura automática */
+    }
+  }
+  
+  .drawer .nav-link {
+    color: white; /* Color de los enlaces */
+    padding: 10px 15px; /* Espaciado interno */
+    margin: 5px 0; /* Espaciado entre enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+  }
+  
+  .drawer .nav-link:hover {
+    background-color: #34495e; /* Color de fondo al pasar el mouse */
+  }
