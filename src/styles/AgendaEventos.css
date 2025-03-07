@@ -1,0 +1,102 @@
+/* Estilos generales */
+.agenda-container {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+  }
+  
+  /* Lista de eventos */
+  .events-list {
+    flex: 1;
+    min-width: 300px; /* Ancho mínimo para evitar que se haga demasiado pequeño */
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Permite desplazamiento si hay muchos eventos */
+  }
+  
+  .events-list h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  .event-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content {
+    flex: 1;
+  }
+  
+  .card-fecha {
+    font-size: 18px;
+    font-weight: 700;
+    color: #555555;
+  }
+  
+  .card-titulo {
+    font-size: 15px;
+    font-weight: 500;
+    color: #777777;
+  }
+  
+  .card-subtitulo {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  
+  /* Calendario */
+  .calendar-container {
+    flex: 1;
+    min-width: 300px; /* Ancho mínimo para evitar que se haga demasiado pequeño */
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+  }
+  
+  .custom-calendar {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa el 100% del contenedor */
+    max-width: 800px; /* Limita el tamaño máximo */
+    transform: scale(1); /* Escala inicial */
+  }
+  
+  /* Ajustes responsivos */
+  @media (max-width: 768px) {
+    .agenda-container {
+      flex-direction: column; /* Cambia a una columna en pantallas pequeñas */
+    }
+  
+    .events-list,
+    .calendar-container {
+      max-width: 100%; /* Ocupa el 100% del ancho en pantallas pequeñas */
+    }
+  
+    .custom-calendar {
+      transform: scale(0.9); /* Reduce ligeramente el tamaño del calendario en móviles */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .custom-calendar {
+      transform: scale(0.8); /* Reduce aún más el tamaño del calendario en pantallas muy pequeñas */
+    }
+  }

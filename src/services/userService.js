@@ -39,10 +39,11 @@ export const updateUser = async (id, user) => {
   }
 };
 
+// userService.js
 export const deleteUser = async (id) => {
   try {
-    console.log('Eliminando usuario con ID:', id); // Depuración
-    const response = await axios.delete(`${API_URL}/${id}/`);
+    console.log('Marcando usuario como eliminado con ID:', id); // Depuración
+    const response = await axios.patch(`${API_URL}/${id}/`, { eliminado: true });
     console.log('Respuesta del backend (deleteUser):', response.data); // Depuración
     return response.data;
   } catch (error) {

@@ -8,6 +8,7 @@ function Drawer() {
       <Nav className="flex-column">
         <Nav.Link href="/">Dashboard</Nav.Link>
         <Nav.Link href="/users">Gestión de Trabajadores</Nav.Link>
+        <Nav.Link href="/Agenda">Agenda de Eventos</Nav.Link>
       </Nav>
     </div>
   );

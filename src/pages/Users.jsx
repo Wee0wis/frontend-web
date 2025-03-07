@@ -19,7 +19,9 @@ function Users() {
   const fetchUsers = async () => {
     try {
       const data = await getUsers();
-      setUsers(data);
+      // Filtrar usuarios que no estén eliminados
+      const filteredUsers = data.filter(user => !user.eliminado);
+      setUsers(filteredUsers);
     } catch (error) {
       console.error('Error al obtener los usuarios:', error);
     }
@@ -69,10 +71,12 @@ function Users() {
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Estado de la Solicitud</th>
+              <th>Rol</th>
               <th>Número de Celular</th>
               <th>Correo del Cliente</th>
+              <th>Contraseña</th>
               <th>Acciones</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -83,6 +87,7 @@ function Users() {
                 <td>{user.estado_solicitud}</td>
                 <td>{user.numero_de_celular}</td>
                 <td>{user.correo_cliente}</td>
+                <td>{user.contrasena}</td>
                 <td>
                   <Button variant="warning" onClick={() => handleEdit(user)}>
                     Editar

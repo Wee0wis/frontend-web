@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 function UserModal({ show, handleClose, user, handleSubmit }) {
   // Estados para los campos del formulario
-  const [nombre, setNombre] = useState(user ? user.nombre : '');
-  const [estadoSolicitud, setEstadoSolicitud] = useState(user ? user.estado_solicitud : '');
-  const [numeroCelular, setNumeroCelular] = useState(user ? user.numero_de_celular : '');
-  const [correoCliente, setCorreoCliente] = useState(user ? user.correo_cliente : '');
+  const [nombre, setNombre] = useState('');
+  const [estadoSolicitud, setEstadoSolicitud] = useState('');
+  const [numeroCelular, setNumeroCelular] = useState('');
+  const [correoCliente, setCorreoCliente] = useState('');
+  const [contrasena, setContrasena] = useState('');
+
+  // Efecto para actualizar los estados cuando el usuario cambia
+  useEffect(() => {
+    if (user) {
+      // Si hay un usuario, establecer los valores del formulario
+      setNombre(user.nombre);
+      setEstadoSolicitud(user.estado_solicitud);
+      setNumeroCelular(user.numero_de_celular);
+      setCorreoCliente(user.correo_cliente);
+      setContrasena(user.contrasena);
+    } else {
+      // Si no hay usuario (agregar nuevo), reiniciar los valores
+      setNombre('');
+      setEstadoSolicitud('');
+      setNumeroCelular('');
+      setCorreoCliente('');
+      setContrasena('');
+    }
+  }, [user]); // Dependencia: user
 
   // Función para manejar el envío del formulario
   const onSubmit = (e) => {
@@ -19,6 +39,7 @@ function UserModal({ show, handleClose, user, handleSubmit }) {
       nombre: nombre,
       numero_de_celular: numeroCelular,
       correo_cliente: correoCliente,
+      contrasena: contrasena,
     };
 
     console.log('Datos enviados al backend:', userData); // Depuración
@@ -46,13 +67,13 @@ function UserModal({ show, handleClose, user, handleSubmit }) {
 
           {/* Campo: Estado de la Solicitud */}
           <Form.Group className="mb-3">
-            <Form.Label>Estado de la Solicitud</Form.Label>
+            <Form.Label>Rol</Form.Label>
             <Form.Select
               value={estadoSolicitud}
               onChange={(e) => setEstadoSolicitud(e.target.value)}
               required
             >
-              <option value="">Seleccione un estado</option>
+              <option value="">Seleccione un Rol</option>
               <option value="M">Mesero</option>
               <option value="C">Caja</option>
               <option value="B">Bartender</option>
@@ -77,6 +98,17 @@ function UserModal({ show, handleClose, user, handleSubmit }) {
               type="email"
               value={correoCliente}
               onChange={(e) => setCorreoCliente(e.target.value)}
+              required
+            />
+          </Form.Group>
+
+          {/* Campo: contrasena */}
+          <Form.Group className="mb-3">
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              type="text"
+              value={contrasena}
+              onChange={(e) => setContrasena(e.target.value)}
               required
             />
           </Form.Group>
