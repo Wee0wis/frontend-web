@@ -1,32 +1,31 @@
-# Etapa 1: Construcción de la aplicación React
-FROM node:20-alpine AS build
+# Usa una imagen oficial de Node.js para construir la app de React
+FROM node:18 AS build
 
-# Definir el directorio de trabajo
-WORKDIR /app
+# Establece el directorio de trabajo
+WORKDIR /usr/local/app
 
-# Copiar los archivos de dependencias
+# Copia el archivo de dependencias de React
 COPY package.json package-lock.json ./
 
-# Instalar dependencias sin modificar package-lock.json
-RUN npm ci
+# Instala las dependencias de la aplicación
+RUN npm install
 
-# Copiar el resto del código
-COPY . .
+# Copia el código fuente de la aplicación React
+COPY src ./src
+COPY public ./public
 
-# Construir la aplicación React
+# Construye la aplicación React
 RUN npm run build
 
-# Etapa 2: Servir con Nginx
+# Usa una imagen Nginx para servir la aplicación construida
 FROM nginx:alpine
 
-# Copiar los archivos de React al directorio de Nginx
-COPY --from=build /app/build /usr/share/nginx/html
+# Copia los archivos construidos de React desde la etapa anterior
+COPY --from=build /usr/local/app/build /usr/share/nginx/html
 
-# Configurar Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Exponer el puerto 80 para Colify
+# Expone el puerto 80 para servir la aplicación
 EXPOSE 80
 
-# Iniciar Nginx
+# Usa Nginx para servir la aplicación
 CMD ["nginx", "-g", "daemon off;"]
+
